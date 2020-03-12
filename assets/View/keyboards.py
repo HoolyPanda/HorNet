@@ -302,7 +302,7 @@ wKB = {
                 "action":
                     {
                         "type":"text",
-                        "payload": "{\"work\":\"workless\"}",
+                        "payload": "{\"work\":\"безработный\"}",
                         "label": "Безработный"
                     },
                 "color": "secondary"
