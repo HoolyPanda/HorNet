@@ -50,7 +50,11 @@ class HackingController():
                         self.currenParametr = None
                         return True
         self.hackingPoints -= 35
-        return False
+        if self.hackingPoints <= 0:
+            self.HackProfile()
+            return False
+        else:
+            return True
 
     def HackMoney(self):
         v = self.LoadVictim()

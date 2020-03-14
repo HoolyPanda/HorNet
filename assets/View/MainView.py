@@ -18,22 +18,19 @@ class MainView():
         self.event = ''
     pass
 
+
     def CheckCurrentHackingParam(self):
         if self.hackingController.currenParametr:
             if self.hackingController.CheckCurrentParametr(json.loads(self.event.raw['object']['payload'])[self.hackingController.currenParametr]):
                 self.session.method('messages.send', {
-                    'message': f'Параметр указан верно\nОчков взлома {str(self.hackingController.hackingPoints)}/80',
-                    'peer_id': self.vkID,
-                    'random_id': random.randint(1, 10000000000000),
-                    'keyboard': keyboards.humanCreatorKB
-                })                               
+                        'message': 'Параметр принят',
+                        'peer_id': self.vkID,
+                        'random_id': random.randint(1, 10000000000000),
+                        'keyboard': keyboards.humanCreatorKB
+                    })             
             else:
-                self.session.method('messages.send', {
-                    'message': f'Параметр указан неверно\nОчков взлома {str(self.hackingController.hackingPoints)}/80',
-                    'peer_id': self.vkID,
-                    'random_id': random.randint(1, 10000000000000),
-                    'keyboard': keyboards.humanCreatorKB
-                })                               
+                return True
+
         pass
 
     def ParseEvent(self, event):
@@ -148,7 +145,7 @@ class MainView():
                                         }) 
                                 else:
                                     self.session.method('messages.send', {                                       
-                                            'message': "Введите имя",
+                                            'message': "Завершение",
                                             'peer_id': self.vkID,
                                             'random_id': random.randint(1, 10000000000000)
                                         }) 
@@ -156,24 +153,20 @@ class MainView():
                         else: #'eyeColor' in payload.keys():
                             a = list(payload.keys())[0]
                             self.hackingController.currenParametr = a
-                            self.CheckCurrentHackingParam()
+                            if self.CheckCurrentHackingParam():
+                                return True
                         
                     else:
                         if self.hackingController.currenParametr:
                             if self.hackingController.CheckCurrentParametr(event.raw['object']['text']):
                                 self.session.method('messages.send', {
-                                    'message': f'Параметр указан верно\nОчков взлома {str(self.hackingController.hackingPoints)}/80',
+                                    'message': f'Параметр принят',
                                     'peer_id': self.vkID,
                                     'random_id': random.randint(1, 10000000000000),
                                     'keyboard': keyboards.humanCreatorKB
                                 })                               
                             else:
-                                self.session.method('messages.send', {
-                                    'message': f'Параметр указан неверно\nОчков взлома {str(self.hackingController.hackingPoints)}/80',
-                                    'peer_id': self.vkID,
-                                    'random_id': random.randint(1, 10000000000000),
-                                    'keyboard': keyboards.humanCreatorKB
-                                })                               
+                                return True                           
                         pass
 
                 pass
