@@ -135,6 +135,11 @@ class MainView():
                             else:
                                 if payload['button'] == 'confirm':
                                     if self.hackingController.TryToHack():
+                                        self.session.method('messages.send', {
+                                            'message': "Червь успешно загружен на сервер",
+                                            'peer_id': self.vkID,
+                                            'random_id': random.randint(1, 10000000000000)
+                                        })  
                                         return True
                                     else:
                                         self.session.method('messages.send', {

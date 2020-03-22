@@ -49,7 +49,7 @@ class HackingController():
                         self.hackedParams.append(self.currenParametr)
                         self.currenParametr = None
                         return True
-        self.hackingPoints -= 35
+        self.hackingPoints -= 10
         if self.hackingPoints <= 0:
             self.HackProfile()
             return False
@@ -89,11 +89,16 @@ class HackingController():
             'peer_id': 2000000001,
             'random_id': random.randint(1, 10000000000000)
         }) 
+        self.session.method('messages.send', {
+            'message': f'Взлом цели {self.victimQR} провален.\nФайерволл успел собрать твой цифровой след',
+            'peer_id': self.vkID,
+            'random_id': random.randint(1, 10000000000000)
+        })
 
 
     def TryToHack(self):
         if self.hackingMode == 'wallet':
-            if self.hackingPoints >= 40:
+            if self.hackingPoints >= 20:
                 self.HackMoney()
                 return True
         if self.hackingMode == 'profile':
