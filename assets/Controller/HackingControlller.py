@@ -90,7 +90,7 @@ class HackingController():
             'random_id': random.randint(1, 10000000000000)
         }) 
         self.session.method('messages.send', {
-            'message': f'Взлом цели {self.victimQR} провален.\nФайерволл успел собрать твой цифровой след',
+            'message': f'Взлом цели {self.victimQR} успешен, червь отправил тебе данные.\nНо файерволл успел собрать твой цифровой след',
             'peer_id': self.vkID,
             'random_id': random.randint(1, 10000000000000)
         })
